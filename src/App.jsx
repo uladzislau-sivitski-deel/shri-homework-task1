@@ -1,5 +1,5 @@
 import React from 'react';
-import View from './components/View.jsx'
+import {View, Header} from './components'
 
 export default class App extends React.Component {
   render() {
@@ -9,6 +9,7 @@ export default class App extends React.Component {
 		};
     return (
       <div style={style}>
+        <Header />
         <View />
       </div>);
   }
