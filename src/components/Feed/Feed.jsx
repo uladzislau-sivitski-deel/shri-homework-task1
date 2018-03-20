@@ -38,10 +38,9 @@ export class Feed extends React.Component {
 
       let response = await fetch(
         'https://yandex.ru/collections/api/cards/channels/gory/?'+ params,
-         {
-           credentials: 'same-origin',
-           'Access-Control-Allow-Origin': '*'
-          }
+        {
+           credentials: 'same-origin'
+        }
         );
         
       let json = await response.json();

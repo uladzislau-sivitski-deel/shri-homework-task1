@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Header} from './components'
+import './styles/styles.css';
 
 export default class App extends React.Component {
   render() {

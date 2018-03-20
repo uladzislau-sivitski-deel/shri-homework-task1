@@ -28,35 +28,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.less$/,
-        use: [{
-            loader: "style-loader"
-          }, {
-            loader: "css-loader", 
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')({
-                    browsers: ['ie >= 11', 'last 5 Chrome versions', 'safari >= 8']
-                  })
-                ];
-              }
-            }
-          },				
-          {
-            loader: "less-loader",
-            options: {
-              strictMath: true
-            }
-          }
-        ]
-      },
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
+        },
       {
         test: /\.(png|svg|jpg|gif)$/,
         exclude: /node_modules/,
