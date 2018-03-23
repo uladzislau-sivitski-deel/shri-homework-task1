@@ -17,7 +17,7 @@ export function Card({card}) {
     let spanWidth = 86;
 
     let ratio = max_dimensions.width/max_dimensions.height;
-    let span = Math.floor(224 * ratio/spanWidth);
+    let span = Math.floor(230 * ratio/spanWidth);
     span % 2 > 0 ? span++ : span = span;
     return (
         <div className="card" style = {{'grid-column': 'span ' + span}}>

@@ -13,7 +13,7 @@ body {
 .cards {
     display: grid;
     align-items: center;
-    grid-template-columns: repeat(auto-fill, 70px);
+    grid-template-columns: repeat(22, 1fr);
     grid-auto-flow: dense;
     grid-gap: 8px;
     max-width: 1712px;
