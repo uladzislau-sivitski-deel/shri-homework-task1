@@ -29,6 +29,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
+    "gettyimages-api": "^3.0.0",
     "lodash": "^4.17.5"
   }
 }

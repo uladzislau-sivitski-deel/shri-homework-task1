@@ -17,27 +17,26 @@ export class Image extends React.Component {
 
     render() {
         let {imageData} = this.props;
-
+        
         if (!imageData) {
             return null;
         }
 
-        let size = imageData.sizes && imageData.sizes.orig,
-            ratio = size ? Math.round(size.height / size.width * 100) : '',
-            color = imageData.avatars_meta && imageData.avatars_meta.color_wiz_back;
-
+        let size = imageData.max_dimensions,
+            ratio = size ? size.height / size.width : '',
+            src = imageData.uri;
+ 
         return (
             <div
                 className="image"
-                style={{
-                    height: ratio ? ratio + 'vw' : '',
-                    backgroundColor: color
-                }}
+                //  style={{
+                //      height: ratio ? ratio * 328 + 'px' : ''
+                //  }}
             >
                 <img
                     ref={(node) => this.image = node}
                     onLoad={() => this.setState({hidden: false})}
-                    src={`https://avatars.mds.yandex.net/get-pdb/${imageData.group_id}/${imageData.avatars_key}/s375`}
+                    src={src}
                     className={`image__image ${this.state.hidden ? 'image__image_hidden' : ''}`}
                     alt=""
                 />

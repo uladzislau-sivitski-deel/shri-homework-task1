@@ -1,10 +1,16 @@
 import React from 'react';
 import {Cards} from '../';
+import API from 'gettyimages-api';
 export class Feed extends React.Component {
 
   constructor(props) {
       super(props);
       this.fetchNext = this.fetchNext.bind(this);
+      this.apiCreds = {
+        apiKey: "q6natzu49b9njnxwv9w7gbxs",
+        apiSecret: "jrUepgGt95SKujDQXepkDAzuhpsnt3EDKYf32qNrUPF4z"
+      };
+      this.page = 1;
       this.state = {
         loading: true,
         cards: []
@@ -32,23 +38,19 @@ export class Feed extends React.Component {
   }
 
   async fetch(query = {}) {
-      let params = Object.keys(query)
-          .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`)
-          .join('&');
-
-      let response = await fetch(
-        'https://yandex.ru/collections/api/cards/channels/gory/?'+ params,
-        {
-           credentials: 'same-origin'
-        }
-        );
+      let client = new API(this.apiCreds);
+      let response = await client.searchimages()
+                        .withPage([this.page])
+                        .withPageSize([100])
+                        .withPhrase('cats')
+                        .withColor(true)
+                        .withResponseField(['comp, summary_set, color_type'])
+                        .execute();
         
-      let json = await response.json();
-
-      this.next = json.next;
+      this.page++;
 
       this.setState({
-        cards: this.state.cards.concat(json.results),
+        cards: this.state.cards.concat(response.images),
         loading: false
       });
   }

@@ -11,13 +11,22 @@ body {
 }
 
 .cards {
-
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, 70px);
+    grid-auto-flow: dense;
+    grid-gap: 8px;
+    max-width: 1712px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .card {
     font-size: 0;
     line-height: 0;
     position: relative;
+    grid-column: span 8;
+    height: 100%;
 }
 
 .card:not(:empty) {
@@ -43,7 +52,7 @@ body {
 }
 
 .card__image {
-
+    height: 100%;
 }
 
 .card__profile {
@@ -57,11 +66,14 @@ body {
 }
 
 .image {
-
+    height: 100%;
+    
 }
 
 .image__image {
+    height: 100%;    
     width: 100%;
+    object-fit: cover;
     opacity: 1;
     transition: opacity 0.3s ease;
 }
