@@ -23,17 +23,17 @@ export class Loader extends React.Component {
     }
 
     onScroll() {
-        if (!this.container || this.state.loading) {
-            return;
-        }
+        // if (!this.container || this.state.loading) {
+        //     return;
+        // }
 
-        let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
-            containerHeight = this.container.clientHeight,
-            windowHeight = window.innerHeight;
+        // let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
+        //     containerHeight = this.container.clientHeight,
+        //     windowHeight = window.innerHeight;
 
-        if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
-            this.nextPage();
-        }
+        // if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
+        //     this.nextPage();
+        // }
     }
 
     async nextPage() {
