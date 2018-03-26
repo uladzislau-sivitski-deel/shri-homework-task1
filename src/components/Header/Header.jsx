@@ -1,11 +1,11 @@
 import React from 'react';
 
-export class Header extends React.Component {
-  render() {
+export function Header(props) {
     return (
-      <div className='view'>
-        Hello World!
-      </div>
+      <header className='header'>
+        <form className='header__form' action="" onSubmit={e => props.onSubmit(e)}>
+          <input className='header__input' type="text"/>
+        </form>
+      </header>
     );
   }
-}

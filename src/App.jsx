@@ -10,7 +10,6 @@ export default class App extends React.Component {
 		};
     return (
       <div style={style}>
-        <Header />
         <View />
       </div>);
   }

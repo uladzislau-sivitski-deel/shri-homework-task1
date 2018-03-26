@@ -1,16 +1,21 @@
 import React from 'react';
-import {Cards} from '../';
+import {Cards, Header} from '../';
 import API from 'gettyimages-api';
 export class Feed extends React.Component {
 
   constructor(props) {
       super(props);
       this.fetchNext = this.fetchNext.bind(this);
+      this.changeSearch = this.changeSearch.bind(this);
+      
       this.apiCreds = {
         apiKey: "q6natzu49b9njnxwv9w7gbxs",
         apiSecret: "jrUepgGt95SKujDQXepkDAzuhpsnt3EDKYf32qNrUPF4z"
       };
-      this.page = 1;
+
+      this.next = 1;
+      this.search = 'cats';
+
       this.state = {
         loading: true,
         cards: []
@@ -18,17 +23,17 @@ export class Feed extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData()
+    this.fetchData();
+}
+
+  fetchData() {
+      return this.fetch()
         .catch((error) => {
             this.setState({
                 loading: false,
                 error
             });
         });
-}
-
-  fetchData() {
-      return this.fetch();
   }
 
   fetchNext() {
@@ -37,17 +42,30 @@ export class Feed extends React.Component {
       }
   }
 
-  async fetch(query = {}) {
+  changeSearch(e) {
+    e.preventDefault();
+
+    const value = e.target.elements[0].value;
+
+    if(value) {
+      this.search = value;
+    }
+    this.setState({cards: []});
+    this.next = 1;
+    this.fetchData();
+  }
+
+  async fetch(next = 1) {
       let client = new API(this.apiCreds);
       let response = await client.searchimages()
-                        .withPage([this.page])
+                        .withPage([next])
                         .withPageSize([100])
-                        .withPhrase('cats')
+                        .withPhrase(this.search)
                         .withColor(true)
                         .withResponseField(['comp, summary_set, color_type'])
                         .execute();
         
-      this.page++;
+      this.next++;
 
       this.setState({
         cards: this.state.cards.concat(response.images),
@@ -73,10 +91,13 @@ export class Feed extends React.Component {
     }
 
     return (
-        <Cards
-            cards={this.state.cards}
-            fetchNext={this.fetchNext}
-        />
+        <div>
+            <Header onSubmit={this.changeSearch}></Header>
+            <Cards
+                cards={this.state.cards}
+                fetchNext={this.fetchNext}
+            />
+        </div>
     );
   }
 }

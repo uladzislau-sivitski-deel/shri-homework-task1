@@ -21,22 +21,18 @@ export class Image extends React.Component {
         if (!imageData) {
             return null;
         }
-
-        let size = imageData.max_dimensions,
-            ratio = size ? size.height / size.width : '',
-            src = imageData.uri;
  
         return (
             <div
                 className="image"
-                //  style={{
-                //      height: ratio ? ratio * 328 + 'px' : ''
-                //  }}
+                   style={{
+                      height: imageData.defaultHeight ? imageData.defaultHeight + 'px' : ''
+                   }}
             >
                 <img
                     ref={(node) => this.image = node}
                     onLoad={() => this.setState({hidden: false})}
-                    src={src}
+                    src={imageData.uri}
                     className={`image__image ${this.state.hidden ? 'image__image_hidden' : ''}`}
                     alt=""
                 />
