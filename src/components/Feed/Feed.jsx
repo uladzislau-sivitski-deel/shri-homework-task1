@@ -18,12 +18,15 @@ export class Feed extends React.Component {
 
       this.state = {
         loading: true,
-        cards: []
+        cards: [],
+        mobile: false
       };
   }
 
   componentDidMount() {
     this.fetchData();
+
+    
 }
 
   fetchData() {

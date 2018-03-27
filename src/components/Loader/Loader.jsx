@@ -8,13 +8,17 @@ export class Loader extends React.Component {
         super(props);
 
         this.onScroll = this.onScroll.bind(this);
-
+        this.orientation = 'portrait';
         this.state = {
             loading: false
         }
     }
 
     componentDidMount() {
+        this.orientation = this.container.clientHeight > this.container.clientWidth 
+        ? 'portrait'
+        : 'landscape'
+        
         document.addEventListener('scroll', this.onScroll, {passive: true});
     }
 
@@ -23,17 +27,27 @@ export class Loader extends React.Component {
     }
 
     onScroll() {
-        // if (!this.container || this.state.loading) {
-        //     return;
-        // }
+        if (!this.container || this.state.loading) {
+            return;
+        }
+        if (this.orientation === 'portrait')
+        {
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
+            containerHeight = this.container.clientHeight,
+            windowHeight = window.innerHeight;
 
-        // let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
-        //     containerHeight = this.container.clientHeight,
-        //     windowHeight = window.innerHeight;
+            if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
+                this.nextPage();
+            }
+        } else { //TODO - horizontal scroll is not catched 
+            let scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft,
+            containerWidth = this.container.clientWidth,
+            windowWidth = window.innerWidth;
 
-        // if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
-        //     this.nextPage();
-        // }
+            if (scrollLeft + windowWidth >= containerWidth - THRESHOLD) {
+                this.nextPage();
+            }
+        }
     }
 
     async nextPage() {
