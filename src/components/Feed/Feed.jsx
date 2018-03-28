@@ -1,6 +1,5 @@
 import React from 'react';
 import {Cards, Header} from '../';
-import API from 'gettyimages-api';
 export class Feed extends React.Component {
 
   constructor(props) {
