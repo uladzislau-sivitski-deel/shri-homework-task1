@@ -8,10 +8,7 @@ export class Feed extends React.Component {
       this.fetchNext = this.fetchNext.bind(this);
       this.changeSearch = this.changeSearch.bind(this);
       
-      this.apiCreds = {
-        apiKey: "q6natzu49b9njnxwv9w7gbxs",
-        apiSecret: "jrUepgGt95SKujDQXepkDAzuhpsnt3EDKYf32qNrUPF4z"
-      };
+      this.apiKey = "q6natzu49b9njnxwv9w7gbxs";
 
       this.next = 1;
       this.search = 'cats';
@@ -59,19 +56,18 @@ export class Feed extends React.Component {
   }
 
   async fetch(next = 1) {
-      let client = new API(this.apiCreds);
-      let response = await client.searchimages()
-                        .withPage([next])
-                        .withPageSize([100])
-                        .withPhrase(this.search)
-                        .withColor(true)
-                        .withResponseField(['comp, summary_set, color_type'])
-                        .execute();
+    let response = await fetch(
+        `https://api.gettyimages.com/v3/search/images?fields=comp%2Csummary_set&page=${this.next}&page_size=100&phrase=${this.search}`, {
+        headers: {
+            'Api-Key': this.apiKey           
+        }
+    })
+    let json = await response.json();
         
-      this.next++;
+    this.next++;
 
       this.setState({
-        cards: this.state.cards.concat(response.images),
+        cards: this.state.cards.concat(json.images),
         loading: false
       });
   }

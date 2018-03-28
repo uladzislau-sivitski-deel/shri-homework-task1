@@ -31,8 +31,5 @@
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12",
     "webpack-dev-server": "^3.1.1"
-  },
-  "dependencies": {
-    "gettyimages-api": "^3.0.0"
   }
 }
