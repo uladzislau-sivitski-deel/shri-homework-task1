@@ -4,6 +4,9 @@ export class Modal extends React.Component {
     constructor(props) {
       super(props);
       this.handleKeyDown = this.handleKeyDown.bind(this);
+      this.state = {
+        loading: false
+      }
     }
 
     componentDidMount() {
@@ -20,6 +23,25 @@ export class Modal extends React.Component {
       if (e.keyCode === 39 && this.props.hasNext)
         this.props.findNext();
     }
+
+    async nextPage() {
+      this.setState({loading: true});
+
+      try {
+          await this.props.fetchNext();
+      } catch(err) {
+          console.error(err);
+      } finally {
+          this.setState({loading: false});
+      }
+  }
+
+    componentWillReceiveProps(nextProps) {
+      if(nextProps.hasNext !== undefined && nextProps.hasNext === false) {
+        this.nextPage();
+      }
+    }
+
     render () {
       const { closeModal, hasNext, hasPrev, findNext, findPrev, src } = this.props;
       if (!src) {
@@ -34,6 +56,11 @@ export class Modal extends React.Component {
               {hasNext && <a href="#" className='modal-next' onClick={findNext} onKeyDown={this.handleKeyDown}></a>}
               <a href="#" className='modal-close' onClick={closeModal} onKeyDown={this.handleKeyDown}>&times;</a>              
               <img src={src} />
+              {this.state.loading && (
+                    <div className="infinite__spinner">
+                        <div className="spinner"/>
+                    </div>
+                )}
             </div>
           </div>
         </div>

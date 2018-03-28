@@ -56,7 +56,8 @@ export class Cards extends React.Component {
 											<Card card={card} key={card.id} onClick={e => this.openModal(e, card.id)}/>
 									)}
 							</div>
-							<Modal 
+              <Modal 
+                  fetchNext={fetchNext}
 									closeModal={this.closeModal} 
 									findPrev={this.findPrev} 
 									findNext={this.findNext} 
