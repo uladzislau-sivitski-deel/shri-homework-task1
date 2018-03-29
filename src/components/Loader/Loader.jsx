@@ -8,17 +8,12 @@ export class Loader extends React.Component {
         super(props);
 
         this.onScroll = this.onScroll.bind(this);
-        this.orientation = 'portrait';
         this.state = {
             loading: false
         }
     }
 
-    componentDidMount() {
-        this.orientation = this.container.clientHeight > this.container.clientWidth 
-        ? 'portrait'
-        : 'landscape'
-        
+    componentDidMount() {  
         document.addEventListener('scroll', this.onScroll, {passive: true});
     }
 
@@ -27,10 +22,12 @@ export class Loader extends React.Component {
     }
 
     onScroll() {
+        
         if (!this.container || this.state.loading) {
             return;
         }
-        if (this.orientation === 'portrait')
+        let orientation =  screen.msOrientation || (screen.orientation || screen.mozOrientation || {}).type;
+        if (orientation === "portrait-primary" || orientation === "portrait-secondary")
         {
             let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
             containerHeight = this.container.clientHeight,
@@ -39,7 +36,7 @@ export class Loader extends React.Component {
             if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
                 this.nextPage();
             }
-        } else { //TODO - horizontal scroll is not catched 
+        } else {
             let scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft,
             containerWidth = this.container.clientWidth,
             windowWidth = window.innerWidth;
@@ -66,7 +63,6 @@ export class Loader extends React.Component {
         return (
             <div className="infinite" ref={(container) => this.container = container}>
                 {this.props.children}
-
                 {this.state.loading && (
                     <div className="infinite__spinner">
                         <div className="spinner"/>

@@ -10,12 +10,9 @@ export class Cards extends React.Component {
         this.state = {
 					currentIndex: null
 				};
-
-        this.openModal = this.openModal.bind(this);        
+      
         this.closeModal = this.closeModal.bind(this);
-        this.findNext = this.findNext.bind(this);
-        this.findPrev = this.findPrev.bind(this);
-
+        this.changeIndex = this.changeIndex.bind(this);
     }
 
     openModal(e, id) {
@@ -24,27 +21,16 @@ export class Cards extends React.Component {
     }
 
     closeModal(e) {
-      if (e != undefined) {
-        e.preventDefault();
-      }
+      e && e.preventDefault();
       this.setState ({ currentIndex: null });
 		}
 		
-      findPrev(e) {
-        if (e != undefined) {
-          e.preventDefault();
-        }
+    changeIndex(e, inc) {
+        e && e.preventDefault();
         this.setState(prevState => ({
-          currentIndex: prevState.currentIndex - 1
+          currentIndex: prevState.currentIndex + inc
         }));
-      }
-      findNext(e) {
-        if (e != undefined) {
-          e.preventDefault();
-        }
-        this.setState(prevState => ({
-          currentIndex: prevState.currentIndex + 1
-        }));
+        document.querySelectorAll('.card')[this.state.currentIndex].scrollIntoView({block: 'end', behavior: 'smooth'});
       }
 
     render() {
@@ -59,8 +45,8 @@ export class Cards extends React.Component {
               <Modal 
                   fetchNext={fetchNext}
 									closeModal={this.closeModal} 
-									findPrev={this.findPrev} 
-									findNext={this.findNext} 
+									goToPrev={(e) => this.changeIndex(e, -1)} 
+									goToNext={(e) => this.changeIndex(e, 1)} 
 									hasPrev={this.state.currentIndex > 0} 
 									hasNext={this.state.currentIndex + 1 < cards.length} 
 									src={cards[this.state.currentIndex] && cards[this.state.currentIndex].display_sizes[0].uri} 

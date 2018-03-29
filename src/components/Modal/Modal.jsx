@@ -19,9 +19,9 @@ export class Modal extends React.Component {
       if (e.keyCode === 27)
         this.props.closeModal();
       if (e.keyCode === 37 && this.props.hasPrev)
-        this.props.findPrev();
+        this.props.goToPrev();
       if (e.keyCode === 39 && this.props.hasNext)
-        this.props.findNext();
+        this.props.goToNext();
     }
 
     async nextPage() {
@@ -43,7 +43,7 @@ export class Modal extends React.Component {
     }
 
     render () {
-      const { closeModal, hasNext, hasPrev, findNext, findPrev, src } = this.props;
+      const { closeModal, hasNext, hasPrev, goToNext, goToPrev, src } = this.props;
       if (!src) {
         return null;
       }
@@ -51,16 +51,17 @@ export class Modal extends React.Component {
         <div>
           <div className="modal-overlay" onClick={closeModal}></div>
           <div className="modal">
-            <div className='modal-body'>
-              {hasPrev && <a href="#" className='modal-prev' onClick={findPrev} onKeyDown={this.handleKeyDown}></a>}
-              {hasNext && <a href="#" className='modal-next' onClick={findNext} onKeyDown={this.handleKeyDown}></a>}
-              <a href="#" className='modal-close' onClick={closeModal} onKeyDown={this.handleKeyDown}>&times;</a>              
+            <div className='modal-body' onKeyDown={this.handleKeyDown}>
+              {hasPrev && <a href="#" className='modal-prev' onClick={goToPrev} ></a>}
+              {hasNext && <a href="#" className='modal-next' onClick={goToNext} ></a>}
+              <a href="#" className='modal-close' onClick={closeModal} >&times;</a>              
               <img src={src} />
               {this.state.loading && (
-                    <div className="infinite__spinner">
-                        <div className="spinner"/>
-                    </div>
-                )}
+                <div className="infinite__spinner">
+                    <div className="spinner"/>
+                </div>
+                )
+              }
             </div>
           </div>
         </div>
