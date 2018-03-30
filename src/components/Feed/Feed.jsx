@@ -88,13 +88,13 @@ export class Feed extends React.Component {
     }
 
     return (
-        <div>
+        <React.Fragment>
             <Header onSubmit={this.changeSearch}></Header>
             <Cards
                 cards={this.state.cards}
                 fetchNext={this.fetchNext}
             />
-        </div>
+        </React.Fragment>
     );
   }
 }
