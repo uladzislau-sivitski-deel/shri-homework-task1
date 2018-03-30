@@ -33,7 +33,7 @@ export class Modal extends React.Component {
       this.setState({loading: true});
 
       try {
-          await this.props.fetchNext();
+        await this.props.fetchNext();
       } catch(err) {
           console.error(err);
       } finally {
@@ -54,12 +54,12 @@ export class Modal extends React.Component {
       }
       return (
         <div>
-          <div className="modal-overlay" onClick={closeModal}></div>
+          <div className="modal__overlay" onClick={closeModal}></div>
           <div className="modal">
-            <div className='modal-body' onKeyDown={this.handleKeyDown}>
-              {hasPrev && <a href="#" className='modal-prev' onClick={goToPrev} ></a>}
-              {hasNext && <a href="#" className='modal-next' onClick={goToNext} ></a>}
-              <a href="#" className='modal-close' onClick={closeModal} >&times;</a>              
+            <div className='modal__body' onKeyDown={this.handleKeyDown}>
+              {hasPrev && <a href="#" className='modal__prev' onClick={goToPrev} ></a>}
+              {hasNext && <a href="#" className='modal__next' onClick={goToNext} ></a>}
+              <a href="#" className='modal__close' onClick={closeModal} >&times;</a>              
               <img src={src} />
               {this.state.loading && (
                 <div className="loader__spinner">

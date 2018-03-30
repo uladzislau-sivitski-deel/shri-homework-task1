@@ -62,12 +62,12 @@ export class Feed extends React.Component {
     })
     let json = await response.json();
         
-    this.next++;
+    this.page++;
 
-      this.setState({
+    this.setState({
         cards: this.state.cards.concat(json.images),
         loading: false
-      });
+    });
   }
 
   render() {

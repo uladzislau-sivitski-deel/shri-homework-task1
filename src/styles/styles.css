@@ -42,13 +42,6 @@ body {
 	opacity: 0.5;
 }
 
-.card__close {
-	position: absolute;
-	top: 0;
-	right: 0;
-	will-change: transform;
-}
-
 .image {
 	height: 100%;
 }
@@ -129,7 +122,7 @@ body {
   max-width: calc(100% - 200px);
 }
   
-.modal-overlay {
+.modal__overlay {
 	position: fixed;
 	z-index: 1;
 	height: 100%;
@@ -139,13 +132,13 @@ body {
 	left: 0;
 }
 
-.modal-body {
+.modal__body {
 	height: 90%;
 	padding-top: 5%;
 }
 
 
-.modal-body a {
+.modal__body a {
 	position: absolute;
 	display: inline;
 	color: grey;
@@ -156,30 +149,30 @@ body {
 	z-index: 2;
 }
 
-.modal-body .loader__spinner {
+.modal__body .loader__spinner {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate3d(-50%, -50%, 0);
 }
 
-.modal-body .spinner {
+.modal__body .spinner {
 	height: 100px;
 	width: 100px;
 }
 
-.modal-close {
+.modal__close {
 	right: 20px;
 	top: 20px;
-	}
+}
 
-.modal-next, .modal-prev {
+.modal__next, .modal__prev {
 	right: 0;
 	height: 100%;
 	width: 50%;
   }
 
-.modal-next::before {
+.modal__next::before {
 	content: ">";
 	color: grey;
 	position: absolute;
@@ -188,7 +181,7 @@ body {
 	right: 20px;
   }
 
-.modal-prev::before {
+.modal__prev::before {
 	content: "<";
 	color: grey;
 	position: absolute;
@@ -197,7 +190,7 @@ body {
 	left: 20px;
   }
 
-.modal-prev {
+.modal__prev {
 	left: 0;
 	right: auto;
   }
@@ -222,13 +215,13 @@ body {
 	font-size: 40px;
 	border: 2px;
   }
-  .modal-body {
+  .modal__body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0 auto;
   }
-  .modal-body a {
+  .modal__body a {
 	  font-size: 100px;
   }
   .modal img {
@@ -238,22 +231,14 @@ body {
 		object-fit: contain;
 	}
 
-	.loader__spinner {
-		position: fixed;
-		z-index: 4;
-		top: 50%;
-		left: 50%;
-		transform: translate3d(-50%, -50%, 0);
-	}
-
 }
 
 @media screen and (min-width: 320px) and (max-width: 980px) and (orientation: portrait) {
 
-	.modal-body {
+	.modal__body {
 		padding: 70px 0;
 	}
-	.modal-prev, .modal-next {
+	.modal__prev, .modal-next {
 		width: 100%;
 		height: 50%;
 	}
@@ -261,7 +246,7 @@ body {
 		bottom: 0;
 		}
 
-	.modal-prev {
+	.modal__prev {
 		top: 0;
 		}
 
@@ -273,7 +258,7 @@ body {
 		right: auto;
 	}
 			
-	.modal-prev::before {
+	.modal__prev::before {
 		left: 50%;
 		bottom: auto;
 		top: 20px;
@@ -295,6 +280,14 @@ body {
 		padding-top: 60px;
 		width: max-content;		
 		height: 100vh;
+	}
+
+	.loader__spinner {
+		position: fixed;
+		z-index: 4;
+		top: 50%;
+		left: 50%;
+		transform: translate3d(-50%, -50%, 0);
 	}
 
 	.image__image {
