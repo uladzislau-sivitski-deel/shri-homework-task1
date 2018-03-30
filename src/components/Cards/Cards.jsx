@@ -26,33 +26,38 @@ export class Cards extends React.Component {
 		}
 		
     changeIndex(e, inc) {
-        e && e.preventDefault();
-        this.setState(prevState => ({
-          currentIndex: prevState.currentIndex + inc
-        }));
-        document.querySelectorAll('.card')[this.state.currentIndex].scrollIntoView({block: 'end', behavior: 'smooth'});
+      e && e.preventDefault();
+      this.setState(prevState => ({
+        currentIndex: prevState.currentIndex + inc
+      }));
+      document.querySelectorAll('.card')[this.state.currentIndex].scrollIntoView({block: 'end', behavior: 'smooth'});
       }
 
     render() {
-        let {cards, fetchNext} = this.props;
+      let {cards, fetchNext} = this.props;
         return (
 					<Loader fetchNext={fetchNext}>
-							<div className="cards">
-									{cards.map((card) =>
-											<Card card={card} key={card.id} onClick={e => this.openModal(e, card.id)}/>
-									)}
-							</div>
-              <Modal 
-                  fetchNext={fetchNext}
-									closeModal={this.closeModal} 
-									goToPrev={(e) => this.changeIndex(e, -1)} 
-									goToNext={(e) => this.changeIndex(e, 1)} 
-									hasPrev={this.state.currentIndex > 0} 
-									hasNext={this.state.currentIndex + 1 < cards.length} 
-									src={cards[this.state.currentIndex] && cards[this.state.currentIndex].display_sizes[0].uri} 
-							/>
+						<div className="cards">
+							{
+                cards.map((card) =>
+                  <Card
+                    card={card}
+                    key={card.id}
+                    onClick={e => this.openModal(e, card.id)}
+                  />
+                )
+              }
+						</div>
+            <Modal 
+              fetchNext={fetchNext}
+							closeModal={this.closeModal} 
+							goToPrev={(e) => this.changeIndex(e, -1)} 
+							goToNext={(e) => this.changeIndex(e, 1)} 
+							hasPrev={this.state.currentIndex > 0} 
+							hasNext={this.state.currentIndex + 1 < cards.length} 
+							src={cards[this.state.currentIndex] && cards[this.state.currentIndex].display_sizes[0].uri} 
+						/>
 					</Loader>
 				)
-
     };
 }

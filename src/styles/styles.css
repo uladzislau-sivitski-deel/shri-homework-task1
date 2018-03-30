@@ -93,7 +93,7 @@ body {
 	display: inline-block;
 	border-top-color: #fc0;
 	border-left-color: #fc0;
-	animation: spinner 1s infinite linear;
+	animation: spinner 1s loader linear;
 	backface-visibility: hidden;
 }
 
@@ -102,7 +102,7 @@ body {
 	content: '\00A0'; /* &nbsp; */
 }
 
-.infinite__spinner {
+.loader__spinner {
 	text-align: center;
 	padding: 48px;
 }
@@ -156,7 +156,7 @@ body {
 	z-index: 2;
 }
 
-.modal-body .infinite__spinner {
+.modal-body .loader__spinner {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -238,7 +238,7 @@ body {
 		object-fit: contain;
 	}
 
-	.infinite__spinner {
+	.loader__spinner {
 		position: fixed;
 		z-index: 4;
 		top: 50%;
@@ -291,7 +291,7 @@ body {
 		width: max-content;
 	}
 
-	.infinite {
+	.loader {
 		padding-top: 60px;
 		width: max-content;		
 		height: 100vh;

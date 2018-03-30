@@ -9,13 +9,12 @@ export class Feed extends React.Component {
       
       this.apiKey = "q6natzu49b9njnxwv9w7gbxs";
 
-      this.next = 1;
+      this.page = 1;
       this.search = 'cats';
 
       this.state = {
         loading: true,
-        cards: [],
-        mobile: false
+        cards: []
       };
   }
 
@@ -36,8 +35,8 @@ export class Feed extends React.Component {
   }
 
   fetchNext() {
-      if (this.next) {
-          return this.fetch(this.next);
+      if (this.page) {
+          return this.fetch(this.page);
       }
   }
 
@@ -50,13 +49,13 @@ export class Feed extends React.Component {
       this.search = value;
     }
     this.setState({cards: []});
-    this.next = 1;
+    this.page = 1;
     this.fetchData();
   }
 
-  async fetch(next = 1) {
+  async fetch() {
     let response = await fetch(
-        `https://api.gettyimages.com/v3/search/images?fields=comp%2Csummary_set&page=${this.next}&page_size=100&phrase=${this.search}`, {
+        `https://api.gettyimages.com/v3/search/images?fields=comp%2Csummary_set&page=${this.page}&page_size=100&phrase=${this.search}`, {
         headers: {
             'Api-Key': this.apiKey           
         }

@@ -16,12 +16,17 @@ export class Modal extends React.Component {
       document.body.removeEventListener('keydown', this.handleKeyDown);
     }
     handleKeyDown(e) {
-      if (e.keyCode === 27)
-        this.props.closeModal();
-      if (e.keyCode === 37 && this.props.hasPrev)
-        this.props.goToPrev();
-      if (e.keyCode === 39 && this.props.hasNext)
-        this.props.goToNext();
+      switch (e.keyCode) {
+        case e.keyCode === 27:
+          this.props.closeModal();
+          break
+        case e.keyCode === 37 && this.props.hasPrev:
+          this.props.goToPrev();
+          break
+        case e.keyCode === 39 && this.props.hasNext:
+          this.props.goToNext();
+          break
+      }
     }
 
     async nextPage() {
@@ -57,7 +62,7 @@ export class Modal extends React.Component {
               <a href="#" className='modal-close' onClick={closeModal} >&times;</a>              
               <img src={src} />
               {this.state.loading && (
-                <div className="infinite__spinner">
+                <div className="loader__spinner">
                     <div className="spinner"/>
                 </div>
                 )

@@ -61,10 +61,10 @@ export class Loader extends React.Component {
 
     render() {
         return (
-            <div className="infinite" ref={(container) => this.container = container}>
+            <div className="loader" ref={(container) => this.container = container}>
                 {this.props.children}
                 {this.state.loading && (
-                    <div className="infinite__spinner">
+                    <div className="loader__spinner">
                         <div className="spinner"/>
                     </div>
                 )}
