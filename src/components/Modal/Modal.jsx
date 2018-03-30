@@ -17,14 +17,14 @@ export class Modal extends React.Component {
     }
     handleKeyDown(e) {
       switch (e.keyCode) {
-        case e.keyCode === 27:
+        case 27:
           this.props.closeModal();
           break
-        case e.keyCode === 37 && this.props.hasPrev:
-          this.props.goToPrev();
+        case 37:
+          this.props.hasPrev && this.props.goToPrev();
           break
-        case e.keyCode === 39 && this.props.hasNext:
-          this.props.goToNext();
+        case 39:
+          this.props.hasNext && this.props.goToNext();
           break
       }
     }
