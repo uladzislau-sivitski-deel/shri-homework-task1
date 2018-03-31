@@ -42,15 +42,16 @@ export class Feed extends React.Component {
 
   changeSearch(e) {
     e.preventDefault();
-
+    
     const value = e.target.elements[0].value;
 
     if(value) {
       this.search = value;
+      this.setState({loading: true, cards: []});
+      this.page = 1;
+      this.fetchData();
     }
-    this.setState({cards: []});
-    this.page = 1;
-    this.fetchData();
+    return;
   }
 
   async fetch() {
