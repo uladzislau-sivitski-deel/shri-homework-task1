@@ -22,29 +22,26 @@ export class Loader extends React.Component {
     }
 
     onScroll() {
-        
-        if (!this.container || this.state.loading) {
-            return;
-        }
-        let orientation =  screen.msOrientation || (screen.orientation || screen.mozOrientation || {}).type;
-        if (orientation === "portrait-primary" || orientation === "portrait-secondary")
-        {
-            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
-            containerHeight = this.container.clientHeight,
-            windowHeight = window.innerHeight;
-
-            if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
-                this.nextPage();
-            }
-        } else {
-            let scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft,
-            containerWidth = this.container.clientWidth,
-            windowWidth = window.innerWidth;
-
-            if (scrollLeft + windowWidth >= containerWidth - THRESHOLD) {
-                this.nextPage();
-            }
-        }
+      if (!this.container || this.state.loading) {
+        return;
+      }
+      let orientation =  screen.msOrientation || (screen.orientation ||screen.mozOrientation || {}).type;
+      if (orientation === "portrait-primary" || orientation === "portrait-secondary" ||  window.innerWidth >= 1000)
+      {
+          let scrollTop = document.body.scrollTop ||document.documentElement.scrollTop,
+          containerHeight = this.container.clientHeight,
+          windowHeight = window.innerHeight;
+          if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
+              this.nextPage();
+          }
+      } else {
+          let scrollLeft = document.body.scrollLeft ||document.documentElement.scrollLeft,
+          containerWidth = this.container.clientWidth,
+          windowWidth = window.innerWidth;
+          if (scrollLeft + windowWidth >= containerWidth - THRESHOLD) {
+              this.nextPage();
+          }
+      }
     }
 
     async nextPage() {
@@ -71,5 +68,4 @@ export class Loader extends React.Component {
             </div>
         );
     }
-
 }
