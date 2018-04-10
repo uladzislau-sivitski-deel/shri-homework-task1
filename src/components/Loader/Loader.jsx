@@ -4,6 +4,7 @@ import {fetchNext} from '../../actions/feedActions';
 
 
 const THRESHOLD = 500;
+const MINDESKTOP = 1000;
 
 const mapStateToProps = (state) => ({
 	loading: state.feed.loading
@@ -30,23 +31,30 @@ export const Loader = connect (mapStateToProps) (
       if (!this.container || this.props.loading) {
         return;
       }
-      let orientation =  screen.msOrientation || (screen.orientation ||screen.mozOrientation || {}).type;
-      if (orientation === "portrait-primary" || orientation === "portrait-secondary" ||  window.innerWidth >= 1000)
-      {
-          let scrollTop = document.body.scrollTop ||document.documentElement.scrollTop,
-          containerHeight = this.container.clientHeight,
-          windowHeight = window.innerHeight;
-          if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
-            this.props.dispatch(fetchNext());
-          }
-      } else {
-          let scrollLeft = document.body.scrollLeft ||document.documentElement.scrollLeft,
-          containerWidth = this.container.clientWidth,
-          windowWidth = window.innerWidth;
-          if (scrollLeft + windowWidth >= containerWidth - THRESHOLD) {
-            this.props.dispatch(fetchNext());
-          }
+      
+      let orientation = screen.msOrientation ||
+                        (
+                          screen.orientation ||
+                          screen.mozOrientation ||
+                          {}
+                        ).type,
+
+        portrait =  orientation === "portrait-primary" ||
+                    orientation === "portrait-secondary" ||
+                    window.innerWidth >= MINDESKTOP,
+
+        scrollDir = portrait ? 'scrollTop' : 'scrollLeft',
+        containerDimension = portrait ? 'clientHeight' : 'clientWidth',
+        windowDimension = portrait ? 'innerHeight' : 'innerWidth',
+
+        scroll = document.body[scrollDir] || document.documentElement[scrollDir],
+        container = this.container[containerDimension],
+        total = window[windowDimension];
+
+      if (scroll + total >= container - THRESHOLD) {
+        this.props.dispatch(fetchNext());
       }
+
     }
 
     render() {
