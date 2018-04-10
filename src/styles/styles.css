@@ -199,28 +199,31 @@ body {
 
 @media screen and (min-width: 320px) and (max-width: 980px)  {
   .cards {
-	display: flex;
-	flex-direction: column;
+		display: flex;
+		flex-direction: column;
   } 
   .card {
-	width: 100%;
-	padding-bottom: 16px;
-  } 
+		width: 100%;
+		padding-bottom: 16px;
+	} 
+	
   .image {
-	height: initial !important;
+		height: initial !important;
   }
 
   .header__input {
-	line-height: 40px;
-	font-size: 40px;
-	border: 2px;
-  }
+		line-height: 40px;
+		font-size: 40px;
+		border: 2px;
+	}
+	
   .modal__body {
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0 auto;
-  }
+		height: 100%;
+		width: 100%;
+		padding: 0;
+		margin: 0 auto;
+	}
+	
   .modal__body a {
 	  font-size: 100px;
   }
@@ -238,23 +241,25 @@ body {
 	.modal__body {
 		padding: 70px 0;
 	}
-	.modal__prev, .modal-next {
+
+	.modal__prev, .modal__next {
 		width: 100%;
 		height: 50%;
 	}
-	.modal-next {
+
+	.modal__next {
 		bottom: 0;
-		}
+	}
 
 	.modal__prev {
 		top: 0;
-		}
+	}
 
-	.modal-next::before {
+	.modal__next::before {
 		left: 50%;
 		top: auto;
 		bottom: 20px;
-		transform: rotate(90deg) translate3d(0%, 50%, 0);
+		transform: rotate(90deg) translate3d(0%, 75%, 0);
 		right: auto;
 	}
 			
@@ -262,7 +267,7 @@ body {
 		left: 50%;
 		bottom: auto;
 		top: 20px;
-		transform: rotate(90deg) translate3d(0%, 50%, 0);
+		transform: rotate(90deg) translate3d(0%, 75%, 0);
 	}
 }
 
