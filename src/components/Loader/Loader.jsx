@@ -1,16 +1,21 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import {fetchNext} from '../../actions/feedActions';
+
 
 const THRESHOLD = 500;
 
-export class Loader extends React.Component {
+const mapStateToProps = (state) => ({
+	loading: state.feed.loading
+});
+
+export const Loader = connect (mapStateToProps) (
+
+    class Loader extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.onScroll = this.onScroll.bind(this);
-        this.state = {
-            loading: false
-        }
     }
 
     componentDidMount() {  
@@ -22,7 +27,7 @@ export class Loader extends React.Component {
     }
 
     onScroll() {
-      if (!this.container || this.state.loading) {
+      if (!this.container || this.props.loading) {
         return;
       }
       let orientation =  screen.msOrientation || (screen.orientation ||screen.mozOrientation || {}).type;
@@ -32,35 +37,23 @@ export class Loader extends React.Component {
           containerHeight = this.container.clientHeight,
           windowHeight = window.innerHeight;
           if (scrollTop + windowHeight >= containerHeight - THRESHOLD) {
-              this.nextPage();
+            this.props.dispatch(fetchNext());
           }
       } else {
           let scrollLeft = document.body.scrollLeft ||document.documentElement.scrollLeft,
           containerWidth = this.container.clientWidth,
           windowWidth = window.innerWidth;
           if (scrollLeft + windowWidth >= containerWidth - THRESHOLD) {
-              this.nextPage();
+            this.props.dispatch(fetchNext());
           }
       }
-    }
-
-    async nextPage() {
-        this.setState({loading: true});
-
-        try {
-            await this.props.fetchNext();
-        } catch(err) {
-            console.error(err);
-        } finally {
-            this.setState({loading: false});
-        }
     }
 
     render() {
         return (
             <div className="loader" ref={(container) => this.container = container}>
                 {this.props.children}
-                {this.state.loading && (
+                {this.props.loading && (
                     <div className="loader__spinner">
                         <div className="spinner"/>
                     </div>
@@ -69,3 +62,4 @@ export class Loader extends React.Component {
         );
     }
 }
+)

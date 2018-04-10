@@ -5,3 +5,7 @@ export const FeedActions = {
   FEED_QUERY: 'FEED_QUERY',
   FEED_RESET: 'FEED_RESET',
 }
+
+export const ModalActions = {
+  SET_MODAL: 'SET_MODAL'
+}

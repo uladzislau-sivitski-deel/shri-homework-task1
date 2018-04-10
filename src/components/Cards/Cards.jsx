@@ -1,63 +1,45 @@
 import * as React from 'react';
-
+import { connect } from 'react-redux';
+import { openModal } from '../../actions/modalActions';
 import {Card, Modal, Loader} from '../';
 
-export class Cards extends React.Component {
+const mapStateToProps = (state) => ({
+	cards: state.feed.cards,
+	error: state.feed.error,
+	page: state.feed.page,
+  loading: state.feed.loading,
+  current: state.modal.current
+});
 
-    constructor(props) {
-        super(props);
+export const Cards = connect(mapStateToProps)(
+  class Cards extends React.Component {
 
-        this.state = {
-					currentIndex: null
-				};
-      
-        this.closeModal = this.closeModal.bind(this);
-        this.changeIndex = this.changeIndex.bind(this);
-    }
-
-    openModal(e, id) {
-				let current = this.props.cards.find(card => card.id === id);
-        this.setState ({ currentIndex: this.props.cards.indexOf(current) });
-    }
-
-    closeModal(e) {
-      e && e.preventDefault();
-      this.setState ({ currentIndex: null });
-		}
-		
-    changeIndex(e, inc) {
-      e && e.preventDefault();
-      this.setState(prevState => ({
-        currentIndex: prevState.currentIndex + inc
-      }));
-      document.querySelectorAll('.card')[this.state.currentIndex].scrollIntoView({block: 'end', behavior: 'smooth'});
+      constructor(props) {
+          super(props);
       }
 
-    render() {
-      let {cards, fetchNext} = this.props;
-        return (
-					<Loader fetchNext={fetchNext}>
-						<div className="cards">
-							{
-                cards.map((card) =>
-                  <Card
-                    card={card}
-                    key={card.id}
-                    onClick={e => this.openModal(e, card.id)}
-                  />
-                )
-              }
-						</div>
-            <Modal 
-              fetchNext={fetchNext}
-							closeModal={this.closeModal} 
-							goToPrev={(e) => this.changeIndex(e, -1)} 
-							goToNext={(e) => this.changeIndex(e, 1)} 
-							hasPrev={this.state.currentIndex > 0} 
-							hasNext={this.state.currentIndex + 1 < cards.length} 
-							src={cards[this.state.currentIndex] && cards[this.state.currentIndex].display_sizes[0].uri} 
-						/>
-					</Loader>
-				)
-    };
-}
+      openModal(e, card) {
+        this.props.dispatch(openModal(card));
+      }
+
+      render() {
+        let { cards } = this.props;
+          return (
+            <Loader>
+              <div className="cards">
+                {
+                  cards.map((card) =>
+                    <Card
+                      card={card}
+                      key={card.id}
+                      onClick={e => this.openModal(e, card)}
+                    />
+                  )
+                }
+              </div>
+              <Modal />
+            </Loader>
+          )
+      };
+  }
+);

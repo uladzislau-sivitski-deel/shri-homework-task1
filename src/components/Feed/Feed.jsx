@@ -6,16 +6,16 @@ import {fetchNext, changeQuery} from '../../actions/feedActions';
 const mapStateToProps = (state) => ({
 	cards: state.feed.cards,
 	error: state.feed.error,
-	page: state.feed.page,
-	loading: state.feed.loading
+	loading: state.feed.loading,
+	page: state.feed.page
 });
 
 export const Feed  = connect(mapStateToProps) (
 	class Feed extends React.Component {
 
   constructor(props) {
-      super(props);
-      this.changeSearch = this.changeSearch.bind(this);
+    super(props);
+    this.changeSearch = this.changeSearch.bind(this);
   }
 
   componentDidMount() {
@@ -31,29 +31,27 @@ export const Feed  = connect(mapStateToProps) (
   }
 
   render() {
-		let {loading, error, cards} = this.props;
-    if (loading) {
+		let {loading, error, cards, page} = this.props;
+    if (loading && page === 1) {
       return (
-          <div className="screen">
-            <div className="spinner"/>
-          </div>
+        <div className="screen">
+          <div className="spinner"/>
+        </div>
       );
     }
 
     if (error) {
         return (
-            <div className="screen">
-                <h1>ERROR: {error.message}</h1>
-            </div>
+          <div className="screen">
+            <h1>ERROR: {error.message}</h1>
+          </div>
         );
     }
 
     return (
         <React.Fragment>
-            <Header onSubmit={this.changeSearch}></Header>
-            <Cards
-                cards={this.props.cards}
-            />
+          <Header onSubmit={this.changeSearch}></Header>
+          <Cards cards={this.props.cards} />
         </React.Fragment>
     );
   }

@@ -24,13 +24,13 @@ export function feedReducer(state, action) {
       return {
         ...state,
         cards: state.cards.concat(action.cards),
-        next: action.next
+        page: action.page
       };
     case FeedActions.FEED_RESET:
       return {
         ...state,
         cards: [],
-        next: 1
+        page: 1
       };
   
     default:
