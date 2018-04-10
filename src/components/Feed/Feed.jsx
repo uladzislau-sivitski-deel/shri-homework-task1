@@ -41,18 +41,18 @@ export const Feed  = connect(mapStateToProps) (
     }
 
     if (error) {
-        return (
-          <div className="screen">
-            <h1>ERROR: {error.message}</h1>
-          </div>
-        );
+      return (
+        <div className="screen">
+          <h1>ERROR: {error.message}</h1>
+        </div>
+      );
     }
 
     return (
-        <React.Fragment>
-          <Header onSubmit={this.changeSearch}></Header>
-          <Cards cards={this.props.cards} />
-        </React.Fragment>
+      <React.Fragment>
+        <Header onSubmit={this.changeSearch}></Header>
+        <Cards cards={this.props.cards} />
+      </React.Fragment>
     );
   }
 })

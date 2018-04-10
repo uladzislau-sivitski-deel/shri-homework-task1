@@ -86,7 +86,7 @@ body {
 	display: inline-block;
 	border-top-color: #fc0;
 	border-left-color: #fc0;
-	animation: spinner 1s loader linear;
+	animation: spinner 1s infinite linear;
 	backface-visibility: hidden;
 }
 
