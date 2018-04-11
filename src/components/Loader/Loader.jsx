@@ -27,7 +27,7 @@ export const Loader = connect (mapStateToProps) (
         document.removeEventListener('scroll', this.onScroll);
     }
 
-    onScroll() {
+    onScroll(e) {
       if (!this.container || this.props.loading) {
         return;
       }

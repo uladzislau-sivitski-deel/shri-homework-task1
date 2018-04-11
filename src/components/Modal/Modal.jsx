@@ -33,10 +33,10 @@ export const Modal = connect(mapStateToProps) (
           this.closeModal();
           break
         case 37:
-          this.props.prev && this.openModal(this.props.prev);
+          this.props.prev && this.move(e, 'prev');
           break
         case 39:
-          this.props.next && this.openModal(this.props.next);
+          this.props.next && this.move(e, 'next');
           break
       }
     }
@@ -45,7 +45,13 @@ export const Modal = connect(mapStateToProps) (
       this.props.dispatch(openModal(card))
     }
 
-    closeModal(){
+    move(e, dir){
+      e && e.preventDefault();
+      this.props[dir] && this.openModal(this.props[dir]);
+    }
+
+    closeModal(e){
+      e && e.preventDefault();
       this.props.dispatch(closeModal());
     }
 
@@ -64,23 +70,45 @@ export const Modal = connect(mapStateToProps) (
       }
       const src = current.display_sizes[0] && current.display_sizes[0].uri;
       return (
-        <div>
-          <div className="modal__overlay" onClick={this.closeModal}></div>
+        <React.Fragment>
+          <div className="modal__overlay"></div>
           <div className="modal">
             <div className='modal__body' onKeyDown={this.handleKeyDown}>
-              {prev && <a href="#" className='modal__prev' onClick={() => this.openModal(prev)} ></a>}
-              {next && <a href="#" className='modal__next' onClick={() => this.openModal(next)} ></a>}
-              <a href="#" className='modal__close' onClick={this.closeModal} >&times;</a>              
+              {
+                prev &&
+                <a
+                  href="#"
+                  className='modal__prev'
+                  onClick={(e) => this.move(e, 'prev')}
+                />
+              }
+              {
+                next &&
+                <a
+                  href="#"
+                  className='modal__next'
+                  onClick={(e) => this.move(e, 'next')}
+                />
+                }
+              <a
+                href="#"
+                className='modal__close'
+                onClick={e => this.closeModal(e)}
+              >
+                &times;
+              </a>              
               <img src={src} />
-              {this.props.loading && (
-                <div className="loader__spinner">
+              {
+                this.props.loading &&
+                (
+                  <div className="loader__spinner">
                     <div className="spinner"/>
-                </div>
+                  </div>
                 )
               }
             </div>
           </div>
-        </div>
+          </React.Fragment>        
       )
     }
   }
