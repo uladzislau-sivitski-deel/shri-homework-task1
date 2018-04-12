@@ -193,7 +193,19 @@ body {
 .modal__prev {
 	left: 0;
 	right: auto;
-  }
+	}
+	
+	@media screen and (min-width: 1205px) and (max-width: 1445px)  {
+		.cards {
+			grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+		}
+	}
+
+	@media screen and (min-width: 980px) and (max-width: 1205px)  {
+		.cards {
+			grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+		}
+	}
 
 
 
