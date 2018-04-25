@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Cards, Header} from '../';
+import Cards from '../Cards/Cards.jsx';
+import Header from '../Header/Header.jsx';
 import {fetchNext, changeQuery} from '../../actions/feedActions';
 
 const mapStateToProps = (state) => ({

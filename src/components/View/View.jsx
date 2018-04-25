@@ -1,5 +1,5 @@
 import React from 'react';
-import {Feed} from '../';
+import Feed from '../Feed/Feed.jsx';
 
 export default class View extends React.Component {
 	render() {

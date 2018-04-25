@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {Image} from '../';
+import Image from '../Image/Image.jsx';
 
 export default function Card({card, onClick}) {
 	if (!card) {

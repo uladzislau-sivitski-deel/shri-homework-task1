@@ -2,7 +2,7 @@ import React from 'react';
 import {createStore, compose, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import {mainReducer} from './reducers/mainReducer';
-import {View} from './components';
+import View from './components/View/View.jsx';
 
 import './styles/styles.css';
 

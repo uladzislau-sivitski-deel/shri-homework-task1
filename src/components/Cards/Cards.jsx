@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modalActions';
-import {Card, Modal, Loader} from '../';
+import Card from  '../Card/Card.jsx';
+import Modal from  '../Modal/Modal.jsx';
+import Loader from  '../Loader/Loader.jsx';
 
 const Cards = connect()(
 	function Cards(props) {
