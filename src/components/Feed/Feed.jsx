@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 	page: state.feed.page
 });
 
-export const Feed	= connect(mapStateToProps) (
+const Feed	= connect(mapStateToProps) (
 	class Feed extends React.Component {
 
 		constructor(props) {
@@ -56,3 +56,5 @@ export const Feed	= connect(mapStateToProps) (
 			);
 		}
 	});
+
+export default Feed;

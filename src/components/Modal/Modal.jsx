@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 	loading: state.feed.loading
 });
 
-export const Modal = connect(mapStateToProps) (
+const Modal = connect(mapStateToProps) (
 	class Modal extends React.Component {
 
 		constructor(props) {
@@ -111,3 +111,5 @@ export const Modal = connect(mapStateToProps) (
 		}
 	}
 );
+
+export default Modal;

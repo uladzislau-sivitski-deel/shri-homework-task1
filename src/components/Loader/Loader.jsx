@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 	loading: state.feed.loading
 });
 
-export const Loader = connect (mapStateToProps) (
+const Loader = connect (mapStateToProps) (
 
 	class Loader extends React.Component {
 		constructor(props) {
@@ -63,3 +63,5 @@ export const Loader = connect (mapStateToProps) (
 		}
 	}
 );
+
+export default Loader;

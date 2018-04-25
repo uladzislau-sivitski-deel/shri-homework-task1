@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/modalActions';
 import {Card, Modal, Loader} from '../';
 
-export const Cards = connect()(
+const Cards = connect()(
 	function Cards(props) {
 		return (
 			<Loader>
@@ -23,3 +23,5 @@ export const Cards = connect()(
 		);
 	}
 );
+
+export default Cards;

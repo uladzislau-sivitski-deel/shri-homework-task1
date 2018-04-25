@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {Image} from '../';
 
-export function Card({card, onClick}) {
+export default function Card({card, onClick}) {
 	if (!card) {
 		return null;
 	}
