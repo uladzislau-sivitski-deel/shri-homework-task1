@@ -1,4 +1,3 @@
-
 export function fetchNext() {
   return async function (dispatch, getState) {
       dispatch({
