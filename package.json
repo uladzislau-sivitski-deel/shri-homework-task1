@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://vladosiv.github.io/shri-homework-task1/",
+  "homepage": "https://github.com/vladosiv/shri-homework-task1#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack-dev-server --open",
-    "lint": "eslint ./src/ --ext jsx --ext js"
+    "lint": "eslint ./src/ --ext jsx --ext js",
+    "lint-fix": "eslint --fix ./src/ --ext jsx --ext js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/vladosiv/shri-homework-task1/issues"
   },
-  "homepage": "https://github.com/vladosiv/shri-homework-task1#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
