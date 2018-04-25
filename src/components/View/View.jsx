@@ -1,12 +1,12 @@
 import React from 'react';
-import {Feed} from '../'
+import {Feed} from '../';
 
 export class View extends React.Component {
-  render() {
-    return (
-      <div className='view'>
-        <Feed />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className='view'>
+				<Feed />
+			</div>
+		);
+	}
 }
