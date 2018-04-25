@@ -23,6 +23,10 @@ module.exports = {
       filename: 'index.html',
       inject: 'body'
     }),
+    new webpack.DefinePlugin({
+      API_KEY: JSON.stringify('q6natzu49b9njnxwv9w7gbxs'),
+      URL: JSON.stringify('https://api.gettyimages.com/v3/search/images?'),
+    }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],

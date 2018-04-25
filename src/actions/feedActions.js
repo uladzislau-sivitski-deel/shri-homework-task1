@@ -1,3 +1,4 @@
+/* global API_KEY, URL */
 export function fetchNext() {
 	return async function (dispatch, getState) {
 		dispatch({
@@ -7,11 +8,9 @@ export function fetchNext() {
 		try {
 			let page = getState().feed.page;
 			let query = getState().feed.query;
-			let API_KEY = 'q6natzu49b9njnxwv9w7gbxs';
-			let url = 'https://api.gettyimages.com/v3/search/images?';
 			
 			let response = await fetch(
-				`${url}fields=comp%2Csummary_set&page=${page}&page_size=100&phrase=${query}`,
+				`${URL}fields=comp%2Csummary_set&page=${encodeURIComponent(page)}&page_size=100&phrase=${encodeURIComponent(query)}`,
 				{headers: {'Api-Key': API_KEY}});
 			
 			let json = await response.json();
