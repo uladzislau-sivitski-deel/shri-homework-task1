@@ -1,8 +1,8 @@
-export * from './header/Header.jsx';
-export * from './view/View.jsx';
-export * from './feed/Feed.jsx';
-export * from './card/Card.jsx';
-export * from './cards/Cards.jsx';
-export * from './image/Image.jsx';
-export * from './loader/Loader.jsx';
-export * from './modal/Modal.jsx';
+import './header/Header.jsx';
+import './view/View.jsx';
+import './feed/Feed.jsx';
+import './card/Card.jsx';
+import './cards/Cards.jsx';
+import './image/Image.jsx';
+import './loader/Loader.jsx';
+import './modal/Modal.jsx';
