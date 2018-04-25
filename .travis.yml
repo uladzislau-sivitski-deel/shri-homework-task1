@@ -1,0 +1,23 @@
+sudo: false
+language: node_js
+node_js:
+- '9'
+cache: npm
+install:
+- npm i
+script:
+- npm run lint
+before_deploy:
+- npm run build
+- echo "Initializing deployment..."
+- cd build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  local-dir: ./
+  on:
+    branch: master
+after_deploy:
+- echo "Deployment complete"
