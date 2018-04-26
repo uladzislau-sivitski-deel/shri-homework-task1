@@ -1,1 +1,1 @@
-src/tests/*
+src/components/*/*.test.js
