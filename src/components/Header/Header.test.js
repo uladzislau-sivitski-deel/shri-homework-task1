@@ -1,6 +1,6 @@
 import chai from 'chai';
 import React from 'react';
-import Header from '../components/Header/Header.jsx';
+import Header from './Header.jsx';
 import {shallow} from 'enzyme';
 
 let expect = chai.expect;
