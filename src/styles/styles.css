@@ -291,12 +291,13 @@ body {
 
 	.cards{
 		width: max-content;
+		margin: 0;
 	}
 
 	.loader {
 		padding-top: 60px;
 		width: max-content;		
-		height: 100vh;
+		height: calc(100vh - 20px);
 	}
 
 	.loader__spinner {
