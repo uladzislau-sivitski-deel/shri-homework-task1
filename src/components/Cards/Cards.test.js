@@ -27,7 +27,7 @@ describe('<Cards/>', ()=>{
 	'use strict';
 
 	let wrapper;
-	
+
   beforeEach(() => {
     wrapper = shallow( <Cards cards={cards} store={store}/>).dive();;
   });
@@ -40,6 +40,10 @@ describe('<Cards/>', ()=>{
 		expect(wrapper.find('.cards')).to.have.length(1);
 	});
 
+	it('Renders array of cards', () => {
+		expect(wrapper.find('.cards').children()).to.have.length(2);
+	});
+	
 	it('<Modal /> is in Loader children', () => {
 		expect(wrapper.find(Modal)).to.have.length(1);
 	});
