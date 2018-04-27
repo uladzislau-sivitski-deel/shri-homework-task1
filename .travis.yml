@@ -11,10 +11,10 @@ script:
 - npm run test
 - npm install -g gemini
 - npm install -g selenium-standalone
-- selenium-standalone install
-- selenium-standalone start
-- npm run gemini-update
-- npm run gemini-test
+# - selenium-standalone install
+# - selenium-standalone start
+# - npm run gemini-update
+# - npm run gemini-test
 before_deploy:
 - npm run build
 - echo "Initializing deployment..."
