@@ -18,13 +18,20 @@ const Modal = connect(mapStateToProps) (
 			super(props);
 			this.handleKeyDown = this.handleKeyDown.bind(this);
 			this.closeModal = this.closeModal.bind(this);
+			
 		}
 
 		componentDidMount() {
-			document.body.addEventListener('keydown', this.handleKeyDown);
+			let document = document;
+			if(document) {
+				document.body.addEventListener('keydown', this.handleKeyDown);				
+			}
 		}	
 		componentWillUnMount() {
-			document.body.removeEventListener('keydown', this.handleKeyDown);
+			let document = document;			
+			if(document) {
+				document.body.removeEventListener('keydown', this.handleKeyDown);				
+			}
 		}
 
 		handleKeyDown(e) {

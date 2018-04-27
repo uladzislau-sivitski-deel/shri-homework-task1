@@ -29,7 +29,7 @@ describe('<Cards/>', ()=>{
 	let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow( <Cards cards={cards} store={store}/>).dive();;
+    wrapper = shallow( <Cards cards={cards} store={store}/>).dive();
   });
 	
 	it('renders <Loader /> for cards', () => {
