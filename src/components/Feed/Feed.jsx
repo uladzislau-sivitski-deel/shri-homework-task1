@@ -8,7 +8,8 @@ const mapStateToProps = (state) => ({
 	cards: state.feed.cards,
 	error: state.feed.error,
 	loading: state.feed.loading,
-	page: state.feed.page
+	page: state.feed.page,
+	query: state.feed.query
 });
 
 const Feed	= connect(mapStateToProps) (
@@ -51,7 +52,7 @@ const Feed	= connect(mapStateToProps) (
 
 			return (
 				<React.Fragment>
-					<Header onSubmit={this.changeSearch}></Header>
+					<Header onSubmit={this.changeSearch} placeholder={this.props.query}></Header>
 					<Cards cards={this.props.cards} />
 				</React.Fragment>
 			);
