@@ -42,6 +42,11 @@ export function changeQuery({query}) {
 			type: 'FEED_QUERY',
 			query: query
 		});
+	};
+}
+
+export function newSearch() {
+	return async function (dispatch) {
 		dispatch({
 			type: 'FEED_RESET'
 		});

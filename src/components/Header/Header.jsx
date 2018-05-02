@@ -4,7 +4,7 @@ export default function Header(props) {
 	return (
 		<header className='header'>
 			<form className='header__form' action="" onSubmit={e => props.onSubmit(e)}>
-				<input className='header__input' type="text" placeholder={props.placeholder}/>
+				<input onChange={props.onChange} className='header__input' type="text" value={props.value}/>
 			</form>
 		</header>
 	);

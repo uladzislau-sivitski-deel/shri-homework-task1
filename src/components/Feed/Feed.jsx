@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Cards from '../Cards/Cards.jsx';
 import Header from '../Header/Header.jsx';
-import {fetchNext, changeQuery} from '../../actions/feedActions';
+import {fetchNext, changeQuery, newSearch} from '../../actions/feedActions';
 
 const mapStateToProps = (state) => ({
 	cards: state.feed.cards,
@@ -17,19 +17,25 @@ const Feed	= connect(mapStateToProps) (
 
 		constructor(props) {
 			super(props);
-			this.changeSearch = this.changeSearch.bind(this);
+			this.changeQuery = this.changeQuery.bind(this);
+			this.search = this.search.bind(this);
 		}
 
 		componentDidMount() {
 			this.props.dispatch(fetchNext());
 		}
 
-		changeSearch(e) {
+		changeQuery(e) {
 			e.preventDefault(); 
-			const query = e.target.elements[0].value;
+			const query = e.target.value;
 			if(query) {
 				this.props.dispatch(changeQuery({query}));
 			}
+		}
+
+		search(e) {
+			e.preventDefault(); 		
+			this.props.dispatch(newSearch());
 		}
 
 		render() {
@@ -52,7 +58,7 @@ const Feed	= connect(mapStateToProps) (
 
 			return (
 				<React.Fragment>
-					<Header onSubmit={this.changeSearch} placeholder={this.props.query}></Header>
+					<Header onChange={this.changeQuery} onSubmit={this.search} value={this.props.query}></Header>
 					<Cards cards={this.props.cards} />
 				</React.Fragment>
 			);
